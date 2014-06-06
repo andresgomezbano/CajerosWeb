@@ -1,0 +1,13 @@
+<rss>
+<alumnos>
+    <alumno fechadenac="30/09/1992">
+        <nombre>Juan</nombre>
+    </alumno>
+    <alumno fechadenac="30/09/1992">
+        <nombre>Jorge</nombre>
+    </alumno>
+    <alumno fechadenac="30/09/1992">
+        <nombre>Josue</nombre>
+    </alumno>
+</alumnos>
+</rss>
