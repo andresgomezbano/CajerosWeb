@@ -6,15 +6,22 @@ class Banco_class extends CI_Model {
         parent::__construct();
     }
 
-    function initialize()
+    function initialize($datos = NULL)
     {
-        $this->nombre = null;
-        $this->estado = null;
+        if($datos != NULL)
+        {
+            foreach($datos as $key => $value)$this->$key = $value;
+        }
+        else
+        {
+            $this->nombre = null;
+            $this->estado = null;
+        }
     }
     
     function guardar()
     {
-        if($this->id == NULL)
+        if(!isset($this->id) || $this->id == NULL)
         {
             unset($this->id);
             $this->db->query($this->db->insert_string('banco', (array)$this));
@@ -34,7 +41,7 @@ class Banco_class extends CI_Model {
     {
         $query = $this->db->query("select * from banco where id = ?", array($id));
         $datos = $query->result();
-        return $datos[0];
+        $this->initialize($datos[0]);
     }
     
     function listado()

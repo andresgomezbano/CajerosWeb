@@ -6,34 +6,65 @@ class Cajero_class extends CI_Model {
         parent::__construct();
     }
 
-    function initialize()
+    function initialize($datos = NULL)
     {
-        $this->banco_id = null;
-        $this->nombre = null;
-        $this->direccion = null;
-        $this->latitud = null;
-        $this->longitud = null;
-        $this->estado = null;
+        if($datos != NULL)
+        {
+            foreach($datos as $key => $value)$this->$key = $value;
+        }
+        else
+        {
+            $this->banco_id = null;
+            $this->nombre = null;
+            $this->direccion = null;
+            $this->latitud = null;
+            $this->longitud = null;
+            $this->estado = null;   
+        }
     }
     
     function guardar()
     {
-        unset($this->id);
-        $this->db->query($this->db->insert_string('cajero', (array)$this));
-        $this->id = $this->db->insert_id();
+        if(!isset($this->id) || $this->id == NULL)
+        {
+            unset($this->id);
+            $this->db->query($this->db->insert_string('cajero', (array)$this));
+            $this->id = $this->db->insert_id();
+        }
+        else
+        {
+            $id = $this->id;
+            unset($this->id);
+            $where = "id = ".$id;
+            $this->db->query($this->db->update_string('cajero', (array)$this, $where));
+            $this->id = $id;
+        }
     }
     
     
-    public function consultar()
+    public function consultar($idCajero)
     {
-        return 1;
+        $query = $this->db->query("select * from cajero where id = ?", array($idCajero));
+        $datos = $query->result();
+        $this->initialize($datos[0]);
     }
     
-    function listado()
+    function listado($idBanco)
     {
-        $sql="select * from materia";
-        $query=$this->db->query($sql);
-        return $query->result();
+        $sql="select * from cajero where banco_id = ?";
+        $query=$this->db->query($sql,array($idBanco));
+        $data = $query->result();
+        return $data;
+    }
+    
+    function getLatitud()
+    {
+        return ($this->latitud != NULL)?$this->latitud :0;
+    }
+    
+    function getLongitud()
+    {
+        return ($this->longitud != NULL)?$this->longitud :0;
     }
 
 }

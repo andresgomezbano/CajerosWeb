@@ -15,4 +15,10 @@ class FormBanco_Mapa {
         $this->banco = form_dropdown('banco', $datos);
     }
     
+    
+    public function getIdBanco()
+    {
+        $CI =& get_instance();
+        return  $CI->input->post('banco');
+    }
 }

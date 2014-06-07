@@ -3,7 +3,42 @@ class Cajero extends CI_Controller {
         
     public function index()
     {
-        echo 'index';
+        $this->load->library('banco/FormBanco_Mapa');
+        $data['form_banco'] = $this->formbanco_mapa;
+        
+         if ($_SERVER['REQUEST_METHOD'] === 'POST')
+         {
+             $this->load->model('Cajero_class','cajero',TRUE);
+             $idBanco = $this->formbanco_mapa->getIdBanco();
+             $data['cajeros'] = $this->cajero->listado($idBanco);
+         }
+           
+        $data['titulo'] = 'Consultar Cajeros';
+        $data['contenido'] = $this->load->view('cajeros_consultar',$data,true);
+        $this->load->view('template/base',$data);
+    }
+    
+    public function editar($idCajero)
+    {
+        $this->load->library('cajero/FormCajero_Registrar');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if($this->formcajero_registrar->es_valido())
+            {
+                $this->formcajero_registrar->guardar();
+                redirect('/cajero/');
+            }
+        }
+        else {
+            $this->load->model('Cajero_class','cajero',TRUE);
+            $this->cajero->consultar($idCajero);
+            $this->formcajero_registrar->initialize($this->cajero);
+            $data['cajero'] = $this->cajero;
+        }
+        
+        $data['titulo'] = 'Editar Cajero';
+        $data['form'] = $this->formcajero_registrar;
+        $data['contenido'] = $this->load->view('cajero_registrar',$data,true);
+        $this->load->view('template/base',$data);
     }
     
     public function mapa()
@@ -24,6 +59,7 @@ class Cajero extends CI_Controller {
         {
             $atributos = $dato->attributes();
             $this->load->model('Cajero_class','cajero',TRUE);
+            $this->cajero->id = NULL;
             $this->cajero->banco_id = 4;
             $this->cajero->nombre = (string)$atributos['label'];
             $this->cajero->direccion = (string)$atributos['direccion']; 
