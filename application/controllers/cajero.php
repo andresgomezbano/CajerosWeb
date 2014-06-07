@@ -8,7 +8,7 @@ class Cajero extends CI_Controller {
         
          if ($_SERVER['REQUEST_METHOD'] === 'POST')
          {
-             $this->load->model('Cajero_class','cajero',TRUE);
+             $this->load->model('cajero_class','cajero',TRUE);
              $idBanco = $this->formbanco_mapa->getIdBanco();
              $data['cajeros'] = $this->cajero->listado($idBanco);
          }
@@ -29,7 +29,7 @@ class Cajero extends CI_Controller {
             }
         }
         else {
-            $this->load->model('Cajero_class','cajero',TRUE);
+            $this->load->model('cajero_class','cajero',TRUE);
             $this->cajero->consultar($idCajero);
             $this->formcajero_registrar->initialize($this->cajero);
             $data['cajero'] = $this->cajero;
@@ -58,7 +58,7 @@ class Cajero extends CI_Controller {
         foreach($datos as $dato)
         {
             $atributos = $dato->attributes();
-            $this->load->model('Cajero_class','cajero',TRUE);
+            $this->load->model('cajero_class','cajero',TRUE);
             $this->cajero->id = NULL;
             $this->cajero->banco_id = 4;
             $this->cajero->nombre = (string)$atributos['label'];

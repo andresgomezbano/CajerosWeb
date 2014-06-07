@@ -3,7 +3,7 @@ class Banco extends CI_Controller {
         
     public function index()
     {
-        $this->load->model('Banco_class','banco',TRUE);
+        $this->load->model('banco_class','banco',TRUE);
         $data['titulo'] = 'Consultar Bancos';
         $data['bancos'] = $this->banco->listado();
         $data['contenido'] = $this->load->view('bancos_consultar',$data,true);
@@ -38,7 +38,7 @@ class Banco extends CI_Controller {
             }
         }
         else {
-            $this->load->model('Banco_class','banco',TRUE);
+            $this->load->model('banco_class','banco',TRUE);
             $this->banco->consultar($id);
             $this->formbanco_registrar->initialize($this->banco);
         }
