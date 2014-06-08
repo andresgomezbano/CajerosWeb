@@ -13,11 +13,24 @@
         <!--script type="text/javascript" src="<?php echo site_url("js/vendor/modernizr.js"); ?>"></script>
         <script type="text/javascript" src="<?php echo site_url("js/vendor/fastclick.js"); ?>"></script-->
         <script type="text/javascript" src="<?php echo site_url("js/foundation.min.js"); ?>"></script>
+        <style type="text/css">
+            .fullWidth {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: initial;
+             }
+             
+             .full{
+                 height: 100%;
+                max-height:100%;
+             }
+        </style>
     </head>
     <body>
         <?php include("menu.php"); ?>        
         <h2><? echo $titulo; ?></h2>
-        <div id="div_main">
+        <div id="div_main" class="full">
             <?php echo $contenido; ?>
         </div>
         <script type="text/javascript"> 

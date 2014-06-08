@@ -46,7 +46,9 @@ class Cajero extends CI_Controller {
         $this->load->library('banco/FormBanco_Mapa');
         $data['titulo'] = 'Consultar Cajeros';
         $data['form_banco'] = $this->formbanco_mapa;
-        $data['contenido'] = $this->load->view('cajero_mapa',$data,true);
+        $this->load->model('cajero_class','cajero',TRUE);
+        $data['cajeros'] = $this->cajero->listado(4);
+        $data['contenido'] = $this->load->view('cajeros_mapa',$data,true);
         $this->load->view('template/base',$data);
     }
     

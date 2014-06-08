@@ -34,8 +34,8 @@
             </li> 
         </ul> 
         <!-- Left Nav Section --> 
-        <!--ul class="left"> 
-            <li><a href="#">Left Nav Button</a></li> 
-        </ul-->
+        <ul class="left"> 
+            <li><a href="<?=site_url("cajero/mapa")?>">Mapa</a></li> 
+        </ul>
     </section> 
 </nav>
