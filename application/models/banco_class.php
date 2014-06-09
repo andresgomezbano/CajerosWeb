@@ -37,6 +37,11 @@ class Banco_class extends CI_Model {
         }
     }
     
+    function eliminar($id)
+    {
+        $this->db->query("delete from banco where id = ?",array($id));
+    }
+    
     public function consultar($id)
     {
         $query = $this->db->query("select * from banco where id = ?", array($id));

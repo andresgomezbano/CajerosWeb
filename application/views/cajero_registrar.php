@@ -1,13 +1,22 @@
 <form method="POST" name="frm_cajero">
     <div class="row">
         <div class="small-8">
+            
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="right-label" class="right inline">Banco:</label>
+                </div>
+                <div class="small-9 columns">
+                    <?=$form->banco_id?>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="small-3 columns">
                     <label for="right-label" class="right inline">Nombre:</label>
                 </div>
                 <div class="small-9 columns">
                     <?=$form->id?>
-                    <?=$form->banco_id?>
                     <?=$form->nombre?>
                     <?=form_error('nombre')?>
                 </div>
@@ -58,7 +67,12 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBYld-lcnDGktBR60Ib3HrHWncc7WYbgYw&sensor=xºFALSE"></script>
 <script type="text/javascript">
       function initialize() {
-        var centro = new google.maps.LatLng(<?=$cajero->getLatitud()?>,<?=$cajero->getLongitud()?>);
+        <? if(isset($cajero)):?>
+            var centro = new google.maps.LatLng(<?=$cajero->getLatitud()?>,<?=$cajero->getLongitud()?>);
+        <? else: ?>
+            var centro = new google.maps.LatLng(-2.18918000,-79.89010000);
+        <? endif;?>
+                    
         var mapOptions = {
           center: centro,
           zoom: 17,

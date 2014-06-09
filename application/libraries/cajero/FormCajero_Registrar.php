@@ -4,10 +4,10 @@ class FormCajero_Registrar {
     public function initialize($cajero = NULL)
     {
         $CI =& get_instance();
-        $CI->load->helper('form');
+        $CI->load->helper(array('form','bancofield'));  
         $existeObjeto = ($cajero != NULL)?1:0;
         $this->id = form_hidden('id', ($existeObjeto)? $cajero->id : $CI->input->post('id'));
-        $this->banco_id = form_hidden('banco_id', ($existeObjeto)? $cajero->banco_id : $CI->input->post('id'));
+        $this->banco_id = BancoField('banco_id', ($existeObjeto)? $cajero->banco_id : $CI->input->post('id'));
         $this->nombre = form_input('nombre', ($existeObjeto)? $cajero->nombre : $CI->input->post('nombre'));
         $this->direccion = form_input('direccion', ($existeObjeto)? $cajero->direccion : $CI->input->post('direccion'));
         $this->latitud = form_input('latitud', ($existeObjeto)? $cajero->latitud : $CI->input->post('latitud'));
@@ -20,6 +20,9 @@ class FormCajero_Registrar {
         $CI =& get_instance();
         $CI->load->library('form_validation');
         $CI->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $CI->form_validation->set_rules('direccion', 'Direccion', 'required');
+        $CI->form_validation->set_rules('latitud', 'Latitud', 'required');
+        $CI->form_validation->set_rules('longitud', 'Longitud', 'required');
         $valido = $CI->form_validation->run();
         if($reload || !$valido)$this->initialize();
         return $valido;

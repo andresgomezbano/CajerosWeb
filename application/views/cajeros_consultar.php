@@ -1,16 +1,17 @@
 <form method="POST" name="frm_banco">
     <div class="row">
-        <div class="small-8">
+        <div class="small-12">
             <div class="row">
                 <div class="small-3 columns">
                     <label for="right-label" class="right inline">Nombre:</label>
                 </div>
-                <div class="small-9 columns">
+                <div class="small-5 columns">
                     <?=$form_banco->banco?>
                 </div>
+                <div class="small-1 columns left">
+                    <input type="submit" value="Consultar" class="button tiny"/>
+                </div>
             </div>
-
-            <input type="submit" value="Consultar" class="button right"/>
         </div> 
     </div>
 </form>
@@ -30,13 +31,13 @@
     <tbody>
         <? foreach ($cajeros as $cajero):?>
         <tr>
-            <td><a href="<?=site_url("cajero/editar/".$cajero->id)?>"><?=$cajero->nombre?></a></td>
+            <td class="td_nombre"><a href="<?=site_url("cajero/editar/".$cajero->id)?>"><?=$cajero->nombre?></a></td>
             <td><?=$cajero->direccion?></td>
             <td><?if($cajero->latitud !=NULL && $cajero->longitud !=NULL):?>SI<?else:?>NO<? endif;?></td>
             <td><?=$cajero->estado?></td>
             <td>
                 <a href="<?=site_url("cajero/editar/".$cajero->id)?>"><i class="fi-pencil"></i></a>
-                <a href="javascript:cajero_eliminar('<?=$cajero->id?>',this);"><i class="fi-trash"></i></a>
+                <a onclick="cajeroEliminar('<?=$cajero->id?>',this);"><i class="fi-trash"></i></a>
             </td>
         </tr>
         <? endforeach;?>
@@ -45,5 +46,12 @@
 <? endif;?>
 
 <script type="text/javascript">
-    
+    function cajeroEliminar(id,elemento)
+    {
+        var nombre = $(elemento.parentNode.parentNode).find(".td_nombre").text();
+        if(confirm("Desea eliminar el cajero: " + nombre +"?"))
+        {
+            document.location.href = "<?=site_url("cajero/eliminar")?>/" + id;
+        }
+    }
 </script>
