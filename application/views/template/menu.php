@@ -25,6 +25,7 @@
                         <ul class="dropdown"> 
                             <li><a href="<?=site_url("cajero/nuevo")?>">Nuevo</a></li>
                             <li><a href="<?=site_url("cajero")?>">Consultar</a></li>
+                            <li><a href="<?=site_url("cajero/subir")?>">Subir</a></li>
                         </ul>
                     </li>
                         
