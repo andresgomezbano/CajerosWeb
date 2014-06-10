@@ -71,6 +71,7 @@ class Cajero extends CI_Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->load->library('cajero/FormCajero_Mapa');
             $this->formcajero_mapa->guardar();
+            $data['success'] = 'Cajeros modificados satisfactoriamente';
         }
         
         $this->load->library('banco/FormBanco_Mapa');

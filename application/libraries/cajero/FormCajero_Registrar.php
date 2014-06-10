@@ -7,8 +7,9 @@ class FormCajero_Registrar {
         $CI->load->helper(array('form','bancofield'));  
         $existeObjeto = ($cajero != NULL)?1:0;
         $this->id = form_hidden('id', ($existeObjeto)? $cajero->id : $CI->input->post('id'));
-        $this->banco_id = BancoField('banco_id', ($existeObjeto)? $cajero->banco_id : $CI->input->post('id'));
+        $this->banco_id = BancoField('banco_id', ($existeObjeto)? $cajero->banco_id : $CI->input->post('banco_id'));
         $this->nombre = form_input('nombre', ($existeObjeto)? $cajero->nombre : $CI->input->post('nombre'));
+        $this->horario = form_input('horario', ($existeObjeto)? $cajero->horario : $CI->input->post('horario'));
         $this->direccion = form_input('direccion', ($existeObjeto)? $cajero->direccion : $CI->input->post('direccion'));
         $this->latitud = form_input('latitud', ($existeObjeto)? $cajero->latitud : $CI->input->post('latitud'));
         $this->longitud = form_input('longitud', ($existeObjeto)? $cajero->longitud : $CI->input->post('longitud'));
@@ -35,6 +36,7 @@ class FormCajero_Registrar {
         $CI->cajero->id = $CI->input->post('id');
         $CI->cajero->banco_id = $CI->input->post('banco_id');
         $CI->cajero->nombre = $CI->input->post('nombre');
+        $CI->cajero->horario = $CI->input->post('horario');
         $CI->cajero->direccion = $CI->input->post('direccion');
         $CI->cajero->latitud = $CI->input->post('latitud');
         $CI->cajero->longitud = $CI->input->post('longitud');

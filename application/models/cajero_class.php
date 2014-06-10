@@ -16,6 +16,7 @@ class Cajero_class extends CI_Model {
         {
             $this->banco_id = null;
             $this->nombre = null;
+            $this->horario = null;
             $this->direccion = null;
             $this->latitud = null;
             $this->longitud = null;

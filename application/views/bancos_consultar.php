@@ -1,6 +1,7 @@
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Estado</th>
             <th></th>
@@ -9,6 +10,7 @@
     <tbody>
         <? foreach ($bancos as $banco):?>
         <tr>
+            <td><?=$banco->id?></td>
             <td class="td_nombre"><a href="<?=site_url("banco/editar/".$banco->id)?>"><?=$banco->nombre?></a></td>
             <td><?=$banco->estado?></td>
             <td>

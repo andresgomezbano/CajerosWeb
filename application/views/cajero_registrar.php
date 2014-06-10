@@ -21,7 +21,17 @@
                     <?=form_error('nombre')?>
                 </div>
             </div>
-
+            
+            <div class="row">
+                <div class="small-3 columns">
+                    <label for="right-label" class="right inline">Horario:</label>
+                </div>
+                <div class="small-9 columns">
+                    <?=$form->horario?>
+                    <?=form_error('horario')?>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="small-3 columns">
                     <label for="right-label" class="right inline">Dirección:</label>

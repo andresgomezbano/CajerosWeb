@@ -37,9 +37,21 @@ class FormCajero_Subir {
             $CI->cajero->id = NULL;
             $CI->cajero->banco_id = $sheetData[$i]['A'];
             $CI->cajero->nombre = $sheetData[$i]['B'];
-            $CI->cajero->direccion = $sheetData[$i]['C']; 
-            $CI->cajero->latitud = $sheetData[$i]['E'];
-            $CI->cajero->longitud = $sheetData[$i]['F'];
+            $CI->cajero->direccion = $sheetData[$i]['C'];
+            $CI->cajero->horario = $sheetData[$i]['D'];
+            
+            if(!isset($sheetData[$i]['F']))
+            {
+                $valores = split(",",$sheetData[$i]['E']);
+                $CI->cajero->latitud = $valores[0];
+                $CI->cajero->longitud = $valores[1];
+            }
+            else 
+            {
+                $CI->cajero->latitud = $sheetData[$i]['E'];
+                $CI->cajero->longitud = $sheetData[$i]['F'];
+            }
+            
             $CI->cajero->estado = 'AC';
             $CI->cajero->guardar();
         }

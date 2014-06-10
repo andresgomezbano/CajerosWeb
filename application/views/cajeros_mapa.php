@@ -1,3 +1,6 @@
+<style type="text/css">
+    .cajero:hover{cursor:pointer;}
+</style>
 <div class="row fullWidth full">
     <div class="medium-3 columns" style="overflow-y: scroll; height: 100%; display: none;" id="div_listado">
         <form name="frm_cajeros" id="frm_cajeros" method="POST" >
@@ -68,6 +71,7 @@
                     agregarCajero(data[i]);
                     agregarMarcador(data[i]);
                 }
+                if(n>0)map.setCenter(new google.maps.LatLng(data[0].latitud,data[0].longitud));
             },
             complete: function(data){}
             
