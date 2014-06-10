@@ -4,9 +4,8 @@ Sistema de Cajeros de Guayaquil.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Bancos
+* Cajeros
 
 ### How do I get set up? ###
 
