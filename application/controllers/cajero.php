@@ -99,6 +99,22 @@ class Cajero extends CI_Controller {
      
     public function xml()
     {
+        $url = 'http://www.bolivariano.com/GooCajOf/xml/data.xml';
+        $datos = simplexml_load_file($url);
+        $this->load->model('cajero_class','cajero',TRUE);
+        foreach($datos->provincias->provincia[9]->ciudad[0]->cajeros->item as $dato)
+        {
+            $this->cajero->id = NULL;
+            $this->cajero->banco_id = 2;
+            $this->cajero->nombre = (string)$dato->nombre;
+            $this->cajero->horario = (string)$dato->horario;
+            $this->cajero->direccion = (string)$dato->direccion; 
+            $this->cajero->latitud = $dato->latitud;
+            $this->cajero->longitud = $dato->longitud;
+            $this->cajero->estado = 'AC';
+            $this->cajero->guardar();
+        }
+                
         return;
         $url = 'http://broome.directrouter.com/~bancodel/mapa_bg2010/index.php?id_provincia=9&id_ciudad=901&id_categoria=5';
         $datos = simplexml_load_file($url);
