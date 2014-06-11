@@ -7,5 +7,7 @@ foreach($alumnos->alumnos->alumno as $data)
 
 echo 'test';
 echo 'prueba';
-
+echo 'prueba';
+echo 'test1';
 ?>
+
