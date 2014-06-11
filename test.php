@@ -5,4 +5,5 @@ foreach($alumnos->alumnos->alumno as $data)
     echo $data->nombre;
 }
 echo 'prueba';
+echo 'test1';
 ?>
