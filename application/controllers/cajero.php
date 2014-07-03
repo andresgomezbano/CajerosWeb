@@ -99,6 +99,29 @@ class Cajero extends CI_Controller {
      
     public function xml()
     {
+        for($i=1;$i<=5;$i++)
+        {
+            $url = 'http://www.pichincha.com/portal/DesktopModules/PichinchaLocationsWeb/SearchPoints.ashx?latitude=-2.157367706298828&longitude=-79.93311309814453&types=1%2C2&services=19&page='.$i;
+            $datos = file_get_contents($url);
+            $datos = json_decode($datos,TRUE);
+            $this->load->model('cajero_class','cajero',TRUE);
+            foreach($datos["Data"] as $dato)
+            {
+                $this->cajero->id = NULL;
+                $this->cajero->banco_id = 1;
+                $this->cajero->nombre = $dato["Name"];
+                $this->cajero->horario = null;
+                $this->cajero->direccion = $dato["Address"]; 
+                $this->cajero->latitud = $dato["Latitude"];
+                $this->cajero->longitud = $dato["Longitude"];
+                $this->cajero->estado = 'AC';
+                $this->cajero->guardar();
+            }
+        }
+        return;
+        
+        
+        //banco bolivariano
         $url = 'http://www.bolivariano.com/GooCajOf/xml/data.xml';
         $datos = simplexml_load_file($url);
         $this->load->model('cajero_class','cajero',TRUE);
@@ -116,6 +139,8 @@ class Cajero extends CI_Controller {
         }
                 
         return;
+        
+        //bando de guayaquil
         $url = 'http://broome.directrouter.com/~bancodel/mapa_bg2010/index.php?id_provincia=9&id_ciudad=901&id_categoria=5';
         $datos = simplexml_load_file($url);
         foreach($datos as $dato)

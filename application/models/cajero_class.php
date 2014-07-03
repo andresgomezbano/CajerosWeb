@@ -62,6 +62,25 @@ class Cajero_class extends CI_Model {
         return $data;
     }
     
+    function getCercanos($coordenada)
+    {
+        $sql="SELECT caj.id,ban.id idBanco,ban.nombre nombreBanco,caj.nombre,caj.direccion,caj.latitud, caj.longitud,
+                    111.045* DEGREES(ACOS(COS(RADIANS(?))
+                               * COS(RADIANS(latitud))
+                               * COS(RADIANS(?) - RADIANS(longitud))
+                               + SIN(RADIANS(?))
+                               * SIN(RADIANS(latitud)))) AS distancia
+               FROM 	cajero caj,
+                      banco ban
+              WHERE 	caj.banco_id = ban.id AND
+                      caj.latitud IS NOT NULL AND caj.longitud IS NOT NULL
+              ORDER BY distancia
+              LIMIT 10";
+        $query=$this->db->query($sql,array($coordenada['latitud'],$coordenada['longitud'],$coordenada['latitud']));
+        $data = $query->result();
+        return $data;
+    }
+    
     function getLatitud()
     {
         return ($this->latitud != NULL)?$this->latitud :0;
