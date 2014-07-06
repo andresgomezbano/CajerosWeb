@@ -63,7 +63,7 @@ class Cajero_class extends CI_Model {
     }
     
     function getCercanos($coordenada)
-    {
+    {        
         $sql="SELECT caj.id,ban.id idBanco,ban.nombre nombreBanco,caj.nombre,caj.direccion,caj.latitud, caj.longitud,
                     111.045* DEGREES(ACOS(COS(RADIANS(?))
                                * COS(RADIANS(latitud))

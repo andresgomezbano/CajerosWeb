@@ -14,8 +14,8 @@
             <td class="td_nombre"><a href="<?=site_url("banco/editar/".$banco->id)?>"><?=$banco->nombre?></a></td>
             <td><?=$banco->estado?></td>
             <td>
-                <a href="<?=site_url("banco/editar/".$banco->id)?>"><i class="fi-pencil"></i></a>
-                <a onclick="bancoEliminar('<?=$banco->id?>',this)"><i class="fi-trash"></i></a>
+                <a href="<?=site_url("banco/editar/".$banco->id)?>"><i class="fi-pencil icon"></i></a>
+                <a onclick="bancoEliminar('<?=$banco->id?>',this)"><i class="fi-trash icon"></i></a>
             </td>
         </tr>
         <? endforeach;?>

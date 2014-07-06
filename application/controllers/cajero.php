@@ -81,6 +81,13 @@ class Cajero extends CI_Controller {
         $this->load->view('template/base',$data);
     }
     
+    public function cercanos()
+    {
+        $data['titulo'] = 'Cajeros Cercanos';
+        $data['contenido'] = $this->load->view('cajeros_cercanos',$data,true);
+        $this->load->view('template/base',$data);
+    }
+    
     public function subir()
     {   
         $this->load->library('cajero/FormCajero_Subir');

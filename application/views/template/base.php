@@ -27,7 +27,7 @@
              }
              
              .icon{
-                 font-size: 30px;
+                 font-size: 17px;
              }
         </style>
     </head>

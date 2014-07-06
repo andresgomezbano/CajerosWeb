@@ -36,8 +36,8 @@
             <td><?if($cajero->latitud !=NULL && $cajero->longitud !=NULL):?>SI<?else:?>NO<? endif;?></td>
             <td><?=$cajero->estado?></td>
             <td>
-                <a href="<?=site_url("cajero/editar/".$cajero->id)?>"><i class="fi-pencil"></i></a>
-                <a onclick="cajeroEliminar('<?=$cajero->id?>',this);"><i class="fi-trash"></i></a>
+                <a href="<?=site_url("cajero/editar/".$cajero->id)?>"><i class="fi-pencil icon"></i></a>
+                <a onclick="cajeroEliminar('<?=$cajero->id?>',this);"><i class="fi-trash icon"></i></a>
             </td>
         </tr>
         <? endforeach;?>
