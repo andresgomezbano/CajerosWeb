@@ -4,6 +4,7 @@
 <div class="row fullWidth full">
     <div class="medium-3 columns" style="overflow-y: scroll; height: 100%; display: none;" id="div_listado">
         <form name="frm_cajeros" id="frm_cajeros" method="POST" >
+            <input type="hidden" name="hdn_banco" id="hdn_banco"/>
             <input type="hidden" value="" name="cajeros_eliminar" id="id_cajeros_eliminar"/>
             <div id="div_cajeros">
                 <? if(isset($cajeros)):?>
@@ -150,6 +151,7 @@
     
     function guardarCajeros()
     {
+        $("#hdn_banco").val($("#id_banco").val());
         $("#id_cajeros_eliminar").val(idEliminar.toString());
         $("#frm_cajeros").submit();
     }

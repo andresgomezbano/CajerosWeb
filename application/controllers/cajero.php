@@ -1,23 +1,25 @@
 <?php
 class Cajero extends CI_Controller {
         
-    public function index()
+    public function main()
     {
+        $idBanco = $this->input->get('banco');
         $this->load->library('banco/FormBanco_Mapa');
+        $this->formbanco_mapa->initialize($idBanco);
         $data['form_banco'] = $this->formbanco_mapa;
-        
-        
-         if ($_SERVER['REQUEST_METHOD'] === 'POST')
+         if ($idBanco != null)
          {
              $this->load->model('cajero_class','cajero',TRUE);
-             $idBanco = $this->formbanco_mapa->getIdBanco();
              $data['cajeros'] = $this->cajero->listado($idBanco);
+             $data['banco_id'] = $idBanco;
          }
            
         $data['titulo'] = 'Consultar Cajeros';
         $data['contenido'] = $this->load->view('cajeros_consultar',$data,true);
+        $data['success'] = $this->session->flashdata('success');
         $this->load->view('template/base',$data);
     }
+   
     
     public function nuevo()
     {
@@ -25,8 +27,9 @@ class Cajero extends CI_Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($this->formcajero_registrar->es_valido())
             {
-                $this->formcajero_registrar->guardar();
-                redirect('/cajero/');
+                $cajero = $this->formcajero_registrar->guardar();
+                $this->session->set_flashdata('success', 'Cajero guardado satisfactoriamente.');
+                redirect('/cajero/'.$cajero->banco_id);
             }
         }
         else $this->formcajero_registrar->initialize();
@@ -42,8 +45,9 @@ class Cajero extends CI_Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($this->formcajero_registrar->es_valido())
             {
-                $this->formcajero_registrar->guardar();
-                redirect('/cajero/');
+                $cajero = $this->formcajero_registrar->guardar();
+                $this->session->set_flashdata('success', 'Cajero modificado satisfactoriamente.');
+                redirect('/cajero/?banco='.$cajero->banco_id);
             }
         }
         else {
@@ -59,15 +63,17 @@ class Cajero extends CI_Controller {
         $this->load->view('template/base',$data);
     }
     
-    function eliminar($id)
+    function eliminar($id,$idBanco)
     {
         $this->load->model('Cajero_class','cajero',TRUE);
         $this->cajero->eliminar($id);
-        redirect("cajero");  
+        $this->session->set_flashdata('success', 'Cajero eliminado satisfactoriamente.');
+        redirect('/cajero/?banco='.$idBanco);  
     }
     
     public function mapa()
     {
+        $idBanco = $this->input->post('hdn_banco');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->load->library('cajero/FormCajero_Mapa');
             $this->formcajero_mapa->guardar();
@@ -75,6 +81,7 @@ class Cajero extends CI_Controller {
         }
         
         $this->load->library('banco/FormBanco_Mapa');
+        $this->formbanco_mapa->initialize($idBanco);
         $data['titulo'] = 'Consultar Cajeros';
         $data['form_banco'] = $this->formbanco_mapa;
         $data['contenido'] = $this->load->view('cajeros_mapa',$data,true);

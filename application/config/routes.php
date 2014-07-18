@@ -39,6 +39,8 @@
 */
 
 $route['default_controller'] = "main";
+$route['cajero'] = "/cajero/main";
+$route['cajero/(:num)'] = "/cajero/main/$1";
 $route['404_override'] = '';
 
 

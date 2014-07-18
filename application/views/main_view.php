@@ -76,10 +76,7 @@
             type:"POST",
             url: "<?=site_url("services/consulta/nuevas")?>",
             data:{'fecha' : ultimaFecha},
-            error:function()
-            {
-                alert('Ha existido un inconveniente al consultar');
-            },
+            error:function(data){console.log(data);},
             success: function(data){
                 var html="";
                 for(posicion in data)

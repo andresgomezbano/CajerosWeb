@@ -1,4 +1,4 @@
-<form method="POST" name="frm_banco">
+<form method="GET" name="frm_banco">
     <div class="row">
         <div class="small-12">
             <div class="row">
@@ -18,6 +18,7 @@
 
 
 <? if(isset($cajeros)):?>
+<input type="hidden" value="<?=$banco_id?>" id="id_bancoActual"/>
 <table>
     <thead>
         <tr>
@@ -51,7 +52,8 @@
         var nombre = $(elemento.parentNode.parentNode).find(".td_nombre").text();
         if(confirm("Desea eliminar el cajero: " + nombre +"?"))
         {
-            document.location.href = "<?=site_url("cajero/eliminar")?>/" + id;
+            var idBanco = $("#id_bancoActual").val();
+            document.location.href = "<?=site_url("cajero/eliminar")?>/" + id + "/" + idBanco;
         }
     }
 </script>

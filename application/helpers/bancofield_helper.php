@@ -1,6 +1,6 @@
 <?php
     
-    function BancoField($nombre,$seleccionado = array())
+    function BancoField($nombre,$seleccionado)
     {
         $CI =& get_instance();
         $CI->load->helper('form');

@@ -24,7 +24,7 @@ class FormCajero_Mapa {
     {
         $CI =& get_instance();
         $CI->load->model('Cajero_class','cajero',TRUE);
-        $idCajeros = split(",",$string);
+        $idCajeros = explode(",",$string);
         $n = count($idCajeros);
         for($i=0;$i<$n;$i++)
         {

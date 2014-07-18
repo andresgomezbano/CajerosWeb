@@ -42,5 +42,6 @@ class FormCajero_Registrar {
         $CI->cajero->longitud = $CI->input->post('longitud');
         $CI->cajero->estado = $CI->input->post('estado');
         $CI->cajero->guardar();
+        return $CI->cajero;
     }
 }
