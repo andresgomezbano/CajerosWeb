@@ -13,7 +13,8 @@ class Cajero extends REST_Controller {
     {
         $latitud = $this->post('latitud');
         $longitud = $this->post('longitud');
-        $coordenada = array('latitud' => $latitud,'longitud' => $longitud);
+        $bancos = $this->post('bancos');
+        $coordenada = array('latitud' => $latitud,'longitud' => $longitud,'bancos'=>$bancos);
         $this->load->model('Posicion_class','posicion',TRUE);
         $this->posicion->initialize($coordenada);
         $this->posicion->guardar();

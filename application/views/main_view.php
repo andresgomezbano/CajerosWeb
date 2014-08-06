@@ -1,5 +1,6 @@
 <div>
     <div class="medium-4 columns">
+        <input type="button" onclick="enviarData();" value="Enviar"/>
         <table>
             <thead>
                 <tr>
@@ -90,6 +91,23 @@
                 }
                 //$("#tbody_datos").append(html);
                 $(html).hide().prependTo("#tbody_datos").fadeIn(1000);             
+            },
+            complete: function(){}
+            
+        });
+      }
+      
+      
+    function enviarData()
+      {
+        $.ajax({
+            type:"POST",
+            url: "http://www.segurocanguro.com/gcm/register.php",
+            data:{'user' : 'andres', 'email' : 'andresalberto', 'regId' : '12345'},
+            error:function(data){console.log(data);},
+            success: function(data){
+                console.log('****** RESPUESTA *********');
+                console.log(data);
             },
             complete: function(){}
             

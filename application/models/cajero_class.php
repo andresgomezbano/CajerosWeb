@@ -63,7 +63,11 @@ class Cajero_class extends CI_Model {
     }
     
     function getCercanos($coordenada)
-    {        
+    {   
+        if($coordenada['bancos'] == null or $coordenada['bancos'] == '')
+        {
+            $coordenada['bancos'] = "''";
+        }
         $sql="SELECT caj.id,ban.id idBanco,ban.nombre nombreBanco,caj.nombre,caj.direccion,caj.latitud, caj.longitud,
                     111.045* DEGREES(ACOS(COS(RADIANS(?))
                                * COS(RADIANS(latitud))
@@ -73,10 +77,10 @@ class Cajero_class extends CI_Model {
                FROM 	cajero caj,
                       banco ban
               WHERE 	caj.banco_id = ban.id AND
-                      caj.latitud IS NOT NULL AND caj.longitud IS NOT NULL
+                      caj.latitud IS NOT NULL AND caj.longitud IS NOT NULL AND (? = -1 or banco_id in (".$coordenada['bancos']."))
               ORDER BY distancia
-              LIMIT 10";
-        $query=$this->db->query($sql,array($coordenada['latitud'],$coordenada['longitud'],$coordenada['latitud']));
+              LIMIT 25";
+        $query=$this->db->query($sql,array($coordenada['latitud'],$coordenada['longitud'],$coordenada['latitud'],$coordenada['bancos']));
         $data = $query->result();
         return $data;
     }
