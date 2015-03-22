@@ -1,0 +1,9 @@
+[08-Jun-2014 03:33:16 America/Guayaquil] PHP Fatal error:  Call to a member function flashdata() on a non-object in /home/seguroca/public_html/cajeros/application/controllers/banco.php on line 10
+[03-Dec-2014 15:13:21 America/Guayaquil] PHP Fatal error:  Uncaught exception 'Exception' with message 'Format class does not support conversion from "php".' in /home/seguroca/public_html/cajeros/application/libraries/Format.php:51
+Stack trace:
+#0 /home/seguroca/public_html/cajeros/application/libraries/Format.php(31): Format->__construct('?ciudad=1', 'php')
+#1 /home/seguroca/public_html/cajeros/application/libraries/REST_Controller.php(250): Format->factory('?ciudad=1', 'php')
+#2 /home/seguroca/public_html/cajeros/system/core/CodeIgniter.php(308): REST_Controller->__construct()
+#3 /home/seguroca/public_html/cajeros/index.php(202): require_once('/home/seguroca/...')
+#4 {main}
+  thrown in /home/seguroca/public_html/cajeros/application/libraries/Format.php on line 51

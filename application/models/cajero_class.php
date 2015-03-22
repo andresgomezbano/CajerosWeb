@@ -66,7 +66,7 @@ class Cajero_class extends CI_Model {
     {   
         if($coordenada['bancos'] == null or $coordenada['bancos'] == '')
         {
-            $coordenada['bancos'] = "''";
+            $coordenada['bancos'] = "-1";
         }
         $sql="SELECT caj.id,ban.id idBanco,ban.nombre nombreBanco,caj.nombre,caj.direccion,caj.latitud, caj.longitud,
                     111.045* DEGREES(ACOS(COS(RADIANS(?))
@@ -75,7 +75,7 @@ class Cajero_class extends CI_Model {
                                + SIN(RADIANS(?))
                                * SIN(RADIANS(latitud)))) AS distancia
                FROM 	cajero caj,
-                      banco ban
+                        banco ban
               WHERE 	caj.banco_id = ban.id AND
                       caj.latitud IS NOT NULL AND caj.longitud IS NOT NULL AND (? = -1 or banco_id in (".$coordenada['bancos']."))
               ORDER BY distancia

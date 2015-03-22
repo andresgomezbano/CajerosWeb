@@ -26,7 +26,7 @@ class Cajero extends REST_Controller {
     
     public function cercanos_get($latitud,$longitud)
     {   
-        $coordenada = array('latitud' => $latitud,'longitud' => $longitud);
+        $coordenada = array('latitud' => $latitud,'longitud' => $longitud, 'bancos' => null);
         $this->load->model('Cajero_class','negocio',TRUE);
         $data = $this->negocio->getCercanos($coordenada);
         $this->response($data);

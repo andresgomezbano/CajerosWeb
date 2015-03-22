@@ -46,12 +46,12 @@
 */
 
 $active_group = 'default';
-$active_record = TRUE;
+$active_record = FALSE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'seguroca_root';
-$db['default']['password'] = 'anonimo3021512';
-$db['default']['database'] = 'seguroca_cajeros';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'cajeros';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

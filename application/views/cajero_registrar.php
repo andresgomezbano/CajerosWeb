@@ -68,7 +68,37 @@
                 </div>
                 <div class="small-9 columns"><?=$form->estado?></div>
             </div>
-
+            
+              <div class="row">
+                <div class="small-3 columns">
+                  <label for="right-label" class="right inline">Redes</label>
+                </div>
+                <div class="small-9 columns">
+                    <table>
+                        <tr>
+                            <td><?=$form->banred?><label for="id_banred">Banred</label></td>
+                            <td><?=$form->pacificard?><label for="id_pacificard">Pacificard</label></td>
+                            <td><?=$form->american_express?><label for="id_american_express">American Express</label></td>
+                        </tr>
+                        <tr>
+                            <td><?=$form->bankard?><label for="id_bankard">Bankard</label></td>
+                            <td><?=$form->nexo?><label for="id_nexo">Nexo</label></td>
+                            <td><?=$form->visa_debito?><label for="id_visa_debito">Visa D&eacute;bito</label></td>
+                        </tr>
+                        <tr>
+                            <td><?=$form->visa?><label for="id_visa">Visa</label></td>
+                            <td><?=$form->plus?><label for="id_plus">Plus</label></td>
+                            <td><?=$form->mastercard?><label for="id_mastercard">Mastercard</label></td>
+                        </tr>
+                        <tr>
+                            <td><?=$form->cirrus?><label for="id_cirrus">Cirrus</label></td>
+                            <td><?=$form->maestro?><label for="id_maestro">Maestro</label></td>
+                            <td><?=$form->diners?><label for="id_diners">Diners Club</label></td>
+                        </tr>
+                    </table>
+                </div>
+              </div>
+            
             <input type="submit" value="Guardar" class="button right"/>
         </div> 
     </div>

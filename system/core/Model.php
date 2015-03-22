@@ -26,14 +26,19 @@
  */
 class CI_Model {
 
+        private $tablename;
 	/**
 	 * Constructor
 	 *
 	 * @access public
 	 */
-	function __construct()
+	function __construct($data = null)
 	{
-		log_message('debug', "Model Class Initialized");
+            if($data != NULL)
+            {
+                foreach($data as $key => $value)$this->$key = $value;
+            }   
+            log_message('debug', "Model Class Initialized");
 	}
 
 	/**
@@ -50,6 +55,27 @@ class CI_Model {
 		$CI =& get_instance();
 		return $CI->$key;
 	}
+        
+        function save()
+        {
+            $tablename = $this->tablename;
+            unset($this->tablename);
+            if(!isset($this->id) || $this->id == NULL)
+            {
+                unset($this->id);
+                $this->db->query($this->db->insert_string($tablename, (array)$this));
+                $this->id = $this->db->insert_id();
+            }
+            else
+            {
+                $id = $this->id;
+                unset($this->id);
+                $where = "id = ".$id;
+                $this->db->query($this->db->update_string($tablename, (array)$this, $where));
+                $this->id = $id;
+            }
+            $this->tablename = $tablename;
+        }
 }
 // END Model Class
 
