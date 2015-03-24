@@ -26,7 +26,7 @@
  */
 class CI_Model {
 
-        private $tablename;
+        //private $tablename;
 	/**
 	 * Constructor
 	 *
